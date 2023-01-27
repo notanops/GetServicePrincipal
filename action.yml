@@ -22,6 +22,3 @@ runs:
     working-directory: bin/
     shell: bash
     run: ./main
-  - name: Verify Github Output
-    run: echo $GITHUB_OUTPUT
-    shell: bash

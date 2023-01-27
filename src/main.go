@@ -33,7 +33,6 @@ func main() {
 	servicePrincipal := e.Config.AzServicePrincipalName
 	servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_")
 	servicePrincipal = strings.ToUpper(servicePrincipal)
-	fmt.Print(servicePrincipal)
 	action.SetOutput("service-principal", servicePrincipal)
 	os.Setenv("GITHUB_OUTPUT", servicePrincipal)
 
