@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -18,7 +17,7 @@ config:
     azure-native:location: FranceCentral
 `
 
-// PulumiConf represent Pulumi config
+// PulumiConf represent Pulumi config file
 type PulumiConf struct {
 	Config struct {
 		AzServicePrincipalName string `yaml:"az:servicePrincipalName"`
@@ -27,7 +26,7 @@ type PulumiConf struct {
 
 func main() {
 
-	action := ga.New()
+	action := ga.New() // Init Github action package
 	e := PulumiConf{}
 	yaml.Unmarshal([]byte(data), &e)
 	servicePrincipal := e.Config.AzServicePrincipalName
@@ -35,7 +34,4 @@ func main() {
 	servicePrincipal = strings.ToUpper(servicePrincipal)              // Capitalize the string
 	action.SetOutput("service-principal", servicePrincipal)           // Set as action output
 	os.Setenv("GITHUB_OUTPUT", servicePrincipal)                      // Set as $GITHUB_OUTPUT
-
-	verif := os.Getenv("GITHUB_OUTPUT")
-	fmt.Printf("Env var : %s\n", verif)
 }
