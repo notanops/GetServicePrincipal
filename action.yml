@@ -18,7 +18,7 @@ runs:
     run: go build -o ../bin/main
     shell: bash
   - id: extract-service-principal
-    - name: Run
-      working-directory: bin/
-      shell: bash
-      run: ./main >> $GITHUB.OUTPUT
+    name: Run
+    working-directory: bin/
+    shell: bash
+    run: ./main >> $GITHUB.OUTPUT
