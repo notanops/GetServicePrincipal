@@ -13,12 +13,7 @@ outputs:
 runs:
   using: composite
   steps:
-  - name: Build
-    working-directory: src/
-    run: go build -o ../bin/main
-    shell: bash
   - id: extract-service-principal
     name: Run
-    working-directory: bin/
     shell: bash
     run: ./main
