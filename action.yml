@@ -21,4 +21,7 @@ runs:
     name: Run
     working-directory: bin/
     shell: bash
-    run: ./main >> $GITHUB.OUTPUT
+    run: ./main >> $GITHUB_OUTPUT
+  - name: Verify Github Output
+    run: echo $GITHUB_OUTPUT
+    shell: bash
