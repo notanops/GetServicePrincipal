@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	ga "github.com/sethvargo/go-githubactions"
 	"gopkg.in/yaml.v2"
 )
 
@@ -25,10 +26,12 @@ type PulumiConf struct {
 
 func main() {
 
+	action := ga.New()
 	e := PulumiConf{}
 	yaml.Unmarshal([]byte(data), &e)
 	servicePrincipal := e.Config.AzServicePrincipalName
 	servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_")
 	servicePrincipal = strings.ToUpper(servicePrincipal)
 	fmt.Println(servicePrincipal)
+	action.SetOutput("service-principal", servicePrincipal)
 }
