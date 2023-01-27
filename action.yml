@@ -19,6 +19,9 @@ runs:
   - name: What's inside
     run: ls
     shell: bash
+  - name: Make executable
+    run: chmod +x main
+    shell: bash
   - id: extract-service-principal
     name: Run
     run: ./main
