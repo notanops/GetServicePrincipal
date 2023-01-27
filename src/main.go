@@ -32,6 +32,6 @@ func main() {
 	servicePrincipal := e.Config.AzServicePrincipalName
 	servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_")
 	servicePrincipal = strings.ToUpper(servicePrincipal)
-	fmt.Println(servicePrincipal)
+	fmt.Print(servicePrincipal)
 	action.SetOutput("service-principal", servicePrincipal)
 }
