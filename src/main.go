@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	ga "github.com/sethvargo/go-githubactions"
@@ -34,4 +35,8 @@ func main() {
 	servicePrincipal = strings.ToUpper(servicePrincipal)
 	fmt.Print(servicePrincipal)
 	action.SetOutput("service-principal", servicePrincipal)
+	os.Setenv("GITHUB_OUTPUT", servicePrincipal)
+
+	verif := os.Getenv("GITHUB_OUTPUT")
+	fmt.Printf("Env var : %s\n", verif)
 }
