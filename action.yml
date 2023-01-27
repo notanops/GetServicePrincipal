@@ -4,7 +4,7 @@ author: 'notanops'
 
 inputs:
   stack-name:
-    description: Name of the stack'
+    description: 'Name of the stack'
     required: false
 outputs:
   service-principal:
