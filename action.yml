@@ -16,4 +16,4 @@ runs:
   - id: extract-service-principal
     name: Run
     shell: bash
-    run: ./main
+    run: main
