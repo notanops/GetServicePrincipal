@@ -1,0 +1,24 @@
+name: 'Get service principal'
+description: 'Retrieve service principal for given env'
+author: 'notanops'
+
+inputs:
+  stack-name:
+    description: Name of the stack'
+    required: false
+outputs:
+  service-principal:
+    description: 'Service principal to use'
+    value: ${{ steps.extract_service_principal.outputs.service-principal}}
+runs:
+  using: composite
+  steps:
+  - name: Build
+    working-directory: src/
+    run: go build -o ../bin/main
+    shell: bash
+  - id: extract-service-principal
+    - name: Run
+      working-directory: bin/
+      shell: bash
+      run: ./main >> $GITHUB.OUTPUT
