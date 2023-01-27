@@ -31,10 +31,10 @@ func main() {
 	e := PulumiConf{}
 	yaml.Unmarshal([]byte(data), &e)
 	servicePrincipal := e.Config.AzServicePrincipalName
-	servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_")
-	servicePrincipal = strings.ToUpper(servicePrincipal)
-	action.SetOutput("service-principal", servicePrincipal)
-	os.Setenv("GITHUB_OUTPUT", servicePrincipal)
+	servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_") // Replace - by _
+	servicePrincipal = strings.ToUpper(servicePrincipal)              // Capitalize the string
+	action.SetOutput("service-principal", servicePrincipal)           // Set as action output
+	os.Setenv("GITHUB_OUTPUT", servicePrincipal)                      // Set as $GITHUB_OUTPUT
 
 	verif := os.Getenv("GITHUB_OUTPUT")
 	fmt.Printf("Env var : %s\n", verif)
