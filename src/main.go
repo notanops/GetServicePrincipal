@@ -28,7 +28,10 @@ func main() {
 
 	action := ga.New() // Init Github action package
 	e := PulumiConf{}
-	yaml.Unmarshal([]byte(data), &e)
+	err := yaml.Unmarshal([]byte(data), &e)
+	if err != nil {
+		action.Fatalf("Can't unmarshall Pulumi config file. Does the yaml key/value az:servicePrincipalName is set ?")
+	}
 	servicePrincipal := e.Config.AzServicePrincipalName
 	servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_") // Replace - by _
 	servicePrincipal = strings.ToUpper(servicePrincipal)              // Capitalize the string
