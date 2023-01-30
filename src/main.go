@@ -3,45 +3,55 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	ga "github.com/sethvargo/go-githubactions"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
-
-var data = `
-config:
-	azure-native:location: FranceCentral
-    az:servicePrincipalName: sp-az-it-apim-build
-    azure-native:servicePrincipalName: sp-az-it-apim-build
-    azure-native:servicePrincipalPassword:
-        secure: AAABAB7EFtCctyCyUZhYOoB2QMeo2Pjbw6Qtr6SWPsEdL+Kz3OAhwGoItWVmFENZSWl+dvjumWcfQC9brLKmXijYmt2EOnSm
-`
 
 func main() {
 
-	action := ga.New() // Init Github action package
+	// Init Github Action package
+	action := ga.New()
+	// Get input from action
 	stack := action.Getenv("stack-name")
 	fmt.Printf("Stack name : %s", stack)
+
+	// Construct the file to read
 	filename := "Pulumi." + stack + ".yaml"
+
+	// Read it and store it in a bytes array
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
-		fmt.Println(err)
-		action.Fatalf("Error reading file.")
+		action.Fatalf("Error reading file %s.\n %s", filename, err)
 	}
 
-	var config map[string]interface{}
+	// Create a struct to match our yaml (only one key)
+	var Pulumi struct {
+		Config struct {
+			ServicePrincipal string `yaml:"az:servicePrincipalName"`
+		} `yaml:"config"`
+	}
 
-	err = yaml.Unmarshal(data, &config)
+	// Unmarshall our data into our struct
+	err = yaml.Unmarshal(data, &Pulumi)
 	if err != nil {
-		fmt.Println(err)
-		action.Fatalf("Can't unmarshall YAML file.")
+		action.Fatalf("Cannot unmarshall YAML config file : %s\n", err)
 	}
+	// Get ou value from the struct
+	sp := Pulumi.Config.ServicePrincipal
+	// Replace every double quotes
+	sp = strings.ReplaceAll(sp, "\"", "")
 
-	fmt.Println(config)
+	// Replace dash by underscore
+	sp = strings.ReplaceAll(sp, "-", "_")
 
-	// servicePrincipal := e.Config.AzServicePrincipalName
-	// servicePrincipal = strings.ReplaceAll(servicePrincipal, "-", "_") // Replace - by _
-	// servicePrincipal = strings.ToUpper(servicePrincipal)              // Capitalize the string
-	// action.SetOutput("service-principal", servicePrincipal)           // Set as action output
-	// os.Setenv("GITHUB_OUTPUT", servicePrincipal)                      // Set as $GITHUB_OUTPUT
+	// Capitalize the string
+	sp = strings.ToUpper(sp)
+
+	// Set as an output
+	action.SetOutput("service-princpial", sp)
+
+	// Debug line
+	fmt.Printf("servicePrincipalName value is : %s\n", sp)
 }
