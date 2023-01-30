@@ -3,7 +3,7 @@ description: 'Retrieve service principal for given env'
 author: 'notanops'
 
 inputs:
-  stack-name:
+  input.stack-name:
     description: 'Name of the stack'
     required: false
 outputs:
@@ -13,12 +13,6 @@ outputs:
 runs:
   using: composite
   steps:
-  - name: Where am I
-    run: pwd
-    shell: bash
-  - name: What's inside
-    run: ls
-    shell: bash
   - name: Make executable
     run: chmod +x main
     shell: bash
