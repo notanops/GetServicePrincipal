@@ -20,5 +20,3 @@ runs:
     name: Run
     run: ./main
     shell: bash
-    with:
-      stack-name: ${{ inputs.stack-name }}
