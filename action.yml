@@ -21,4 +21,4 @@ runs:
     run: ./main
     shell: bash
     env:
-      INPUT_NAME: ${{ inputs.stack-name }}
+      stack-name: ${{ inputs.stack-name }}
