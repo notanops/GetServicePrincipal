@@ -28,7 +28,7 @@ type PulumiConf struct {
 func main() {
 
 	action := ga.New() // Init Github action package
-	stack := action.GetInput("INPUTS.STACK-NAME")
+	stack := action.GetInput("stack-name")
 	fmt.Printf("Stack name : %s", stack)
 	e := PulumiConf{}
 	err := yaml.Unmarshal([]byte(data), &e)
