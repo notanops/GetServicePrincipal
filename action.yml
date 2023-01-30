@@ -3,7 +3,7 @@ description: 'Retrieve service principal for given env'
 author: 'notanops'
 
 inputs:
-  input.stack-name:
+  stack-name:
     description: 'Name of the stack'
     required: false
 outputs:
