@@ -15,6 +15,9 @@ runs:
   steps:
   - name: Checkout code action
     uses: actions/checkout@v3
+  - name: What's inside
+    run: ls
+    shell: bash
   - name: Run vet and lint
     run: go vet
     shell: bash
