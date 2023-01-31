@@ -18,7 +18,7 @@ runs:
     with:
       path: ./tool
   - name: What's inside
-    run: ls
+    run: ls -a tool
     shell: bash
   - name: Build app
     run: go install .
