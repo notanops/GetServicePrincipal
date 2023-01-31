@@ -13,13 +13,17 @@ outputs:
 runs:
   using: composite
   steps:
+  - name: Checkout Pulumi project
+    uses: actions/checkout@v3
+    with:
+      path: project
   - uses: suisei-cn/actions-download-file@v1.3.0
     name: Download the file
     with:
       url: "https://github.com/notanops/GetServicePrincipal/raw/main/getserviceprincipal"
-      target: ./
+      target: ./project
   - name: What's inside
-    run: ls -a
+    run: ls -a project
     shell: bash
   - name: Make executable
     run: chmod +x getserviceprincipal
