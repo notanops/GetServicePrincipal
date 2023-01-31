@@ -26,7 +26,7 @@ func main() {
 		action.Fatalf("Error reading file %s.\n %s", filename, err)
 	}
 
-	// Create a struct to match our yaml (only one key)
+	// Create a struct to match our yaml (one key, we don't need the others)
 	var Pulumi struct {
 		Config struct {
 			ServicePrincipal string `yaml:"az:servicePrincipalName"`
