@@ -56,5 +56,5 @@ func main() {
 	fmt.Printf("servicePrincipalName value is : %s\n", sp)
 
 	// Notice for output
-	action.Noticef("ℹ️ ServicePrincipalName value is : %s\n", sp)
+	action.Warningf("ℹ️ ServicePrincipalName value is : %s\n", sp)
 }
