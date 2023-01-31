@@ -20,6 +20,9 @@ runs:
     with:
       url: "https://github.com/notanops/GetServicePrincipal/raw/main/getserviceprincipal"
       target: ./
+  - name: Make executable
+    run: chmod +x getserviceprincipal
+    shell: bash
   - name: Run getServicePrincipal
     run: ./getserviceprincipal
     shell: bash
