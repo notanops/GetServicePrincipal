@@ -15,14 +15,15 @@ runs:
   steps:
   - name: Checkout code action
     uses: actions/checkout@v3
+    path: ./tool
   - name: What's inside
     run: ls
     shell: bash
   - name: Run vet and lint
-    run: go vet
+    run: go vet ./tool
     shell: bash
   - name: Build app
-    run: go install
+    run: cd tool && go install
     shell: bash
   - name: Run getServicePrincipal
     run: getServicePrincipal
