@@ -54,4 +54,7 @@ func main() {
 
 	// Debug line
 	fmt.Printf("servicePrincipalName value is : %s\n", sp)
+
+	// Notice for output
+	action.Noticef("ℹ️ ServicePrincipalName value is : %s\n", sp)
 }
