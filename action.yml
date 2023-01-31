@@ -25,6 +25,12 @@ runs:
     run: go install .
     working-directory: tool
     shell: bash
+  - name: Seek GOBIN
+    run: echo $GOBIN
+    shell: bash
+  - name: Seek GOPATH
+    run: echo $GOPATH
+    shell: bash
   - name: Run getServicePrincipal
     run: getServicePrincipal
     shell: bash
