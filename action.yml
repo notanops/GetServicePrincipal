@@ -16,9 +16,11 @@ runs:
   - name: Make executable
     run: chmod +x main
     shell: bash
+    working-directory: process
   - id: extract-service-principal
     name: Run
     run: ./main
     shell: bash
+    working-directory: process
     env:
       stack-name: ${{ inputs.stack-name }}
