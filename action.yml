@@ -21,6 +21,7 @@ runs:
   - name: Build app
     run: go build
     working-directory: tool
+    shell: bash
   - name: Add bin to Path
     run: echo "::add-path::./getserviceprincipal"
     working-directory: tool
