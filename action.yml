@@ -21,7 +21,8 @@ runs:
     run: ls
     shell: bash
   - name: Build app
-    run: cd tool && go install
+    run: go install .
+    working-directory: tool
     shell: bash
   - name: Run getServicePrincipal
     run: getServicePrincipal
