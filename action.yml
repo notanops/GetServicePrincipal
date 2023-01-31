@@ -13,10 +13,11 @@ outputs:
 runs:
   using: composite
   steps:
-  - name: Checkout code action
+  - name: Checkout action code
     uses: actions/checkout@v3
     with:
-      path: ./tool
+      repository: notanops/getServicePrincipal
+      path: tool
   - name: What's inside
     run: ls -a tool
     shell: bash
