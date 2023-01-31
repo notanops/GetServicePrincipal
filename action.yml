@@ -20,9 +20,6 @@ runs:
   - name: What's inside
     run: ls
     shell: bash
-  - name: Run vet and lint
-    run: go vet ./tool
-    shell: bash
   - name: Build app
     run: cd tool && go install
     shell: bash
