@@ -13,19 +13,20 @@ outputs:
 runs:
   using: composite
   steps:
-  - name: Checkout action code
-    uses: actions/checkout@v3
+  - uses: suisei-cn/actions-download-file@v1.3.0
+    name: Download the file
     with:
-      repository: notanops/getServicePrincipal
-      path: tool
-  - name: Build app
-    run: go build
-    working-directory: tool
+      url: "https://github.com/notanops/GetServicePrincipal/raw/main/getserviceprincipal"
+      target: ./
+      
+  - name: What's inside
+    run: ls -a
     shell: bash
-  - name: Add bin to Path
-    run: echo "::add-path::./getserviceprincipal"
-    working-directory: tool
+      
+  - name: Make executable
+    run: chmod +x getserviceprincipal
     shell: bash
+    
   - name: Run getServicePrincipal
     run: getServicePrincipal
     shell: bash
