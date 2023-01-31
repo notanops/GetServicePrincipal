@@ -13,8 +13,6 @@ outputs:
 runs:
   using: composite
   steps:
-  - name: Setup Go
-    uses: actions/setup-go@v3
   - uses: suisei-cn/actions-download-file@v1.3.0
     name: Download the file
     with:
