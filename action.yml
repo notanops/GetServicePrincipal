@@ -13,12 +13,16 @@ outputs:
 runs:
   using: composite
   steps:
-  - name: Make executable
-    run: chmod +x main
+  - name: Checkout code action
+    uses: actions/checkout@v3
+  - name: Run vet and lint
+    run: go vet
     shell: bash
-  - id: extract-service-principal
-    name: Run
-    run: ./main
+  - name: Build app
+    run: go install
+    shell: bash
+  - name: Run getServicePrincipal
+    run: getServicePrincipal
     shell: bash
     env:
       stack-name: ${{ inputs.stack-name }}
