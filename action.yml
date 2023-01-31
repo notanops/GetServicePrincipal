@@ -18,15 +18,15 @@ runs:
     with:
       repository: notanops/getServicePrincipal
       path: tool
-  - name: What's inside
-    run: ls -a tool
+  - name: Update PATH
+    run: echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
     shell: bash
   - name: Build app
     run: go install .
     working-directory: tool
     shell: bash
   - name: Run getServicePrincipal
-    run: $GOPATH/bin//getServicePrincipal
+    run: $GITHUB_PATH/getServicePrincipal
     shell: bash
     env:
       stack-name: ${{ inputs.stack-name }}
