@@ -16,9 +16,12 @@ runs:
   - name: Make executable
     run: chmod +x main
     shell: bash
+  - name: Move binary to project folder
+    run: mv main project/
+    shell: bash
   - id: extract-service-principal
     name: Run
-    run: ./main
+    run: ./project/main
     shell: bash
     env:
       stack-name: ${{ inputs.stack-name }}
