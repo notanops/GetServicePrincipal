@@ -13,9 +13,9 @@ func main() {
 
 	// Init Github Action package
 	action := ga.New()
+
 	// Get input from action
 	stack := action.Getenv("stack-name")
-	fmt.Printf("Stack name : %s", stack)
 
 	// Construct the file to read
 	filename := "Pulumi." + stack + ".yaml"
@@ -40,21 +40,15 @@ func main() {
 	}
 	// Get ou value from the struct
 	sp := Pulumi.Config.ServicePrincipal
-	// Replace every double quotes
+
+	// Replace and capitalize
 	sp = strings.ReplaceAll(sp, "\"", "")
-
-	// Replace dash by underscore
 	sp = strings.ReplaceAll(sp, "-", "_")
-
-	// Capitalize the string
 	sp = strings.ToUpper(sp)
 
 	// Set as an output
 	action.SetOutput("service-princpial", sp)
 
-	// Debug line
-	fmt.Printf("servicePrincipalName value is : %s\n", sp)
-
-	// Notice for output
-	action.Warningf("ℹ️ ServicePrincipalName value is : %s\n", sp)
+	// For workflow logs
+	fmt.Printf("Service principal name is : %s from %s file.", sp, filename)
 }
